@@ -5,7 +5,7 @@
 # (cryptography) comes from upstream's own baseimage requirements file and is
 # installed into a venv in a build stage so the runtime image has no toolchain.
 FROM ghcr.io/rake-pro/alpine-base:1.0@sha256:f62113d237739786f9b4419271e4625f509374576b50c8cb8ea4fc882952d168 AS build
-ARG VERSION="2.18.2"
+ARG VERSION="2.19.1"
 RUN apk add --no-cache curl python3 py3-pip \
     && python3 -m venv /opt/venv \
     && curl -fsSL -o /tmp/requirements.txt \
