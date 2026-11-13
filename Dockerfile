@@ -4,7 +4,7 @@
 # vendors its pure-Python dependencies in lib/; the only compiled requirement
 # (cryptography) comes from upstream's own baseimage requirements file and is
 # installed into a venv in a build stage so the runtime image has no toolchain.
-FROM ghcr.io/rake-pro/alpine-base:1.0@sha256:dc3ee9f773b64708750783e81c9f9a0071194f56e40cd2d3f3e6fa139ec1dc46 AS build
+FROM ghcr.io/rake-pro/alpine-base:1.0@sha256:73a14e80b779043678834af2c47d6c1c17dc1982733d596fba38bafd1093e5b5 AS build
 ARG VERSION="2.19.1"
 RUN apk add --no-cache curl python3 py3-pip \
     && python3 -m venv /opt/venv \
@@ -19,7 +19,7 @@ RUN apk add --no-cache curl python3 py3-pip \
     && rm -rf /tmp/app.tgz /tmp/requirements.txt \
     && chmod -R u=rwX,go=rX /out /opt/venv
 
-FROM ghcr.io/rake-pro/alpine-base:1.0@sha256:dc3ee9f773b64708750783e81c9f9a0071194f56e40cd2d3f3e6fa139ec1dc46
+FROM ghcr.io/rake-pro/alpine-base:1.0@sha256:73a14e80b779043678834af2c47d6c1c17dc1982733d596fba38bafd1093e5b5
 ARG VERSION
 LABEL org.opencontainers.image.source="https://github.com/Rake-Pro/tautulli" \
       org.opencontainers.image.version="${VERSION}"
