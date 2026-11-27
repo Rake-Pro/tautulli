@@ -6,7 +6,7 @@
 # installed into a venv in a build stage so the runtime image has no toolchain.
 # pip is removed from the venv after the install: nothing uses it at runtime and
 # its vendored libraries (urllib3, msgpack, setuptools) only add scanner findings.
-FROM ghcr.io/rake-pro/alpine-base:1.0@sha256:13603c44f47bc2163846b1959d16987bc4b85e2fd2fe07d4a0bc618755e8fedb AS build
+FROM ghcr.io/rake-pro/alpine-base:1.0@sha256:d6d12d09e6ff6e94430ac6c4b200a677182249859d5175ad0741038addb63fb0 AS build
 ARG VERSION="2.19.1"
 RUN apk add --no-cache curl python3 py3-pip \
     && python3 -m venv /opt/venv \
@@ -22,7 +22,7 @@ RUN apk add --no-cache curl python3 py3-pip \
     && rm -rf /tmp/app.tgz /tmp/requirements.txt \
     && chmod -R u=rwX,go=rX /out /opt/venv
 
-FROM ghcr.io/rake-pro/alpine-base:1.0@sha256:13603c44f47bc2163846b1959d16987bc4b85e2fd2fe07d4a0bc618755e8fedb
+FROM ghcr.io/rake-pro/alpine-base:1.0@sha256:d6d12d09e6ff6e94430ac6c4b200a677182249859d5175ad0741038addb63fb0
 ARG VERSION
 LABEL org.opencontainers.image.source="https://github.com/Rake-Pro/tautulli" \
       org.opencontainers.image.version="${VERSION}"
